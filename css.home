@@ -1,0 +1,280 @@
+/*
+ * =================================================================
+ * Açúcar & Afeto - Folha de Estilo Principal V2.3 (Final)
+ * =================================================================
+ */
+/* --- Variáveis CSS --- */
+:root {
+    --primary-color: #f06292; /* Rosa forte */
+    --secondary-color: #ffe0b2; /* Laranja pastel */
+    --tertiary-color: #8c76ab; /* Roxo */
+    --accent-color: #ff92b4; /* Rosa suave */
+    --warning-color: #ffc107; /* Amarelo para estrelas */
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --bg-light: #fff;
+    --bg-soft: #fcf6f9; /* Fundo suave */
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Inter', sans-serif;
+    --font-soft: 'Poppins', sans-serif; /* Nova fonte suave */
+}
+/* --- Estilos Globais e Reset Simples --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-soft);
+    line-height: 1.6;
+}
+/* --- Tipografia e Cores --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+h1 {
+    font-size: 3.5rem;
+    text-align: center;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+h3 {
+    font-size: 2rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+p {
+    margin-bottom: 1rem;
+}
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--tertiary-color);
+}
+/* --- Layout Principal --- */
+header {
+    background-color: var(--bg-light);
+    padding: 1.5rem 1rem 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+nav a {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+nav a:hover, nav a.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+section {
+    background-color: var(--bg-light);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+/* --- Seção Hero e Descrições --- */
+.hero-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    /* Amarelo pastel translúcido com degradê */
+    background: linear-gradient(135deg, rgba(255, 221, 170, 0.7), rgba(255, 224, 178, 0.7));
+    border-radius: 10px;
+}
+/* Removida a classe `.hero-text` e `.section-description` do CSS */
+/* --- Cards de Receitas --- */
+.recipes-section h3 {
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+.recipe-card {
+    background-color: var(--bg-soft);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.recipe-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+.recipe-info {
+    padding: 1rem;
+    text-align: center;
+}
+.recipe-info h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem; /* Aumento da fonte do nome das receitas */
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+.recipe-info .rating, .recipe-info .date {
+    font-size: 1rem;
+    color: #666;
+}
+.rating i, .rating .fa-star {
+    color: var(--warning-color);
+}
+.popular-recipes {
+    margin-bottom: 3rem;
+}
+/* --- Depoimentos --- */
+.testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
+blockquote {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--bg-soft);
+    padding: 1.5rem;
+    border-left: 5px solid var(--secondary-color);
+    border-radius: 5px;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+blockquote p {
+    margin: 0 0 1rem;
+}
+blockquote cite {
+    display: block;
+    text-align: right;
+    font-style: normal;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+/* --- Rodapé --- */
+footer {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    padding: 2rem 1rem;
+}
+footer section {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+footer h4 {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    text-align: left;
+    margin-bottom: 1rem;
+}
+footer p {
+    font-size: 0.9rem;
+}
+.social-links {
+    margin-top: 1.5rem;
+}
+.social-link {
+    display: inline-block;
+    color: var(--text-light);
+    margin-right: 1.5rem;
+    font-size: 1rem;
+}
+.social-link:hover {
+    color: var(--primary-color);
+}
+.social-link i {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+/* --- Responsividade (Media Queries) --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.7rem;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .recipe-grid, .testimonials {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .category-item i {
+        font-size: 2.5rem;
+    }
+    .hero-text, .section-description {
+        font-size: 1rem;
+    }
+    .recipe-info h4 {
+        font-size: 1.2rem;
+    }
+    footer h4 {
+        font-size: 1.5rem;
+    }
+}
