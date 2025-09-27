@@ -8,25 +8,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <input type="checkbox" id="menu-toggle">
+
     <header>
-        <h1>Açúcar & Afeto</h1>
+        <label for="menu-toggle" class="hamburger-icon" aria-label="Abrir Menu">
+            <i class="fas fa-bars"></i>
+        </label>
         
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></li>
-                <li><a href="receitas.html"><i class="fas fa-book"></i> RECEITAS</a></li>
-                <li><a href="categoria.html"><i class="fas fa-tags"></i> CATEGORIA</a></li>
-                <li><a href="favoritos.html"><i class="fas fa-heart"></i> FAVORITOS</a></li>
-                <li><a href="sobre-nos.html"><i class="fas fa-info-circle"></i> SOBRE NÓS</a></li>
-                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
-                <li><a href="minhas-receitas.html"><i class="fas fa-edit"></i> MINHAS RECEITAS</a></li>
-            </ul>
-        </nav>
+        <h1>Açúcar & Afeto</h1>
     </header>
+    
+    <nav id="main-menu">
+        <label for="menu-toggle" class="close-icon" aria-label="Fechar Menu">
+            <i class="fas fa-times"></i>
+        </label>
+        
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></li>
+            <li><a href="receitas.html"><i class="fas fa-book"></i> RECEITAS</a></li>
+            <li><a href="categoria.html"><i class="fas fa-tags"></i> CATEGORIA</a></li>
+            <li><a href="favoritos.html"><i class="fas fa-heart"></i> FAVORITOS</a></li>
+            <li><a href="sobre-nos.html"><i class="fas fa-info-circle"></i> SOBRE NÓS</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+            <li><a href="minhas-receitas.html"><i class="fas fa-edit"></i> MINHAS RECEITAS</a></li>
+        </ul>
+    </nav>
+    
+    <label for="menu-toggle" class="menu-overlay"></label>
+
     <main>
         <section class="hero-section">
             <h2>Bem-vindos ao Açúcar & Afeto</h2>
