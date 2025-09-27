@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Açúcar & Afeto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Açúcar & Afeto</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> HOME</a></li>
+                <li><a href="receitas.html"><i class="fas fa-book"></i> RECEITAS</a></li>
+                <li><a href="categoria.html"><i class="fas fa-tags"></i> CATEGORIA</a></li>
+                <li><a href="favoritos.html"><i class="fas fa-heart"></i> FAVORITOS</a></li>
+                <li><a href="sobre-nos.html"><i class="fas fa-info-circle"></i> SOBRE NÓS</a></li>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+                <li><a href="minhas-receitas.html"><i class="fas fa-edit"></i> MINHAS RECEITAS</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-section">
+            <h2>Bem-vindos ao Açúcar & Afeto</h2>
+        </section>
+        <section class="recipes-section">
+            <article class="popular-recipes">
+                <h3><i class="fas fa-fire"></i> Receitas Mais Populares</h3>
+                
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://s2-g1.glbimg.com/i8RCSdAhgEdeT1jAEgtFX34Za10=/0x0:518x335/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2022/7/E/wbSXcjQUmsK82Cf0eeIA/mousse-de-maracuja.jpg" alt="Mousse de Maracujá Cremoso" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#mousse-maracuja">Mousse de Maracujá Cremoso</a></h4>
+                            <div class="rating">4.9⭐ (2.543 avaliações)</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://comidinhasdochef.com/wp-content/uploads/2018/09/Brigadeiro-Gourmet-de-Leite-Ninho.jpg" alt="Brigadeiro de Ninho Especial" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#brigadeiro-ninho">Brigadeiro de Ninho Especial</a></h4>
+                            <div class="rating">4.8⭐ (1.897 avaliações)</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://minhasreceitinhas.com.br/wp-content/uploads/2025/02/doce-de-banana-da-vovo-na-panela-de-pressao-730x365.jpg" alt="Doce de Banana da Vovó" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#doce-banana">Doce de Banana da Vovó</a></h4>
+                            <div class="rating">4.9⭐ (1.654 avaliações)</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://bodyfarma.com.br/wp-content/uploads/2019/11/sorvete-fit-de-cacau.png" alt="Brigadeiro Fit Proteico" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#brigadeiro-fit">Brigadeiro Fit Proteico</a></h4>
+                            <div class="rating">4.7⭐ (1.234 avaliações)</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/a3ea1be90cbae91368a1775275c293c8.jpeg?itok=8d3QuUU5" alt="Arroz Doce Cremoso" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#arroz-doce">Arroz Doce Cremoso</a></h4>
+                            <div class="rating">4.8⭐ (1.123 avaliações)</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="new-recipes">
+                <h3><i class="fas fa-sparkles"></i> Receitas Adicionadas Esta Semana</h3>
+                
+                <div class="recipe-grid">
+                    <div class="recipe-card">
+                        <img src="https://cdn.urbano.com.br/uploads/torta-de-limao-282035108-800.jpg" alt="Torta de Limão Siciliano" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#torta-limao-siciliano">Torta de Limão Siciliano</a></h4>
+                            <div class="date">Adicionada em 18/09/2025</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjJLHb5IZrLs_bOfv47T8VY12sNncf-zBisA&s" alt="Bolo Red Velvet com Cream Cheese" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#bolo-red-velvet">Bolo Red Velvet com Cream Cheese</a></h4>
+                            <div class="date">Adicionada em 17/09/2025</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://receitapudim.com.br/wp-content/uploads/2016/06/pudimgostosohoz.jpg" alt="Pudim Prestígio" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#pudim-prestigio">Pudim Prestígio</a></h4>
+                            <div class="date">Adicionada em 16/09/2025</div>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <img src="https://receitasobremesa.com.br/wp-content/uploads/2024/09/Cheesecake-de-Goiaba-e-Creme-com-Calda-de-Frutas-Vermelhas.webp" alt="Cheesecake de Frutas Vermelhas" class="recipe-image">
+                        <div class="recipe-info">
+                            <h4><a href="receitas.html#cheesecake-frutas-vermelhas">Cheesecake de Frutas Vermelhas</a></h4>
+                            <div class="date">Adicionada em 15/09/2025</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article>
+                <h3><i class="fas fa-comments"></i> O que Nossos Usuários Estão Dizendo</h3>
+                <div class="testimonials">
+                    <blockquote>
+                        <p>"O brigadeiro gourmet ficou perfeito! Meus convidados pediram a receita. Muito obrigada por compartilhar!"</p>
+                        <cite>- Maria Silva</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>"Site maravilhoso! As receitas são muito bem explicadas e sempre dão certo. Já testei mais de 20 receitas!"</p>
+                        <cite>- João Santos</cite>
+                    </blockquote>
+                    <blockquote>
+                        <p>"Adoro as receitas fit! Finalmente posso comer doces sem culpa. Parabéns pela qualidade do conteúdo!"</p>
+                        <cite>- Ana Costa</cite>
+                    </blockquote>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <section>
+            <h4><i class="fas fa-phone"></i> Contato & Suporte</h4>
+            <p><strong>E-mail:</strong> contato@acucareeafeto.com.br</p>
+            <p><strong>Suporte técnico:</strong> suporte@acucareeafeto.com.br</p>
+            <p><strong>Envio de receitas:</strong> receitas@acucareeafeto.com.br</p>
+            <p><strong>Parcerias:</strong> parcerias@acucareeafeto.com.br</p>
+            <div class="social-links">
+                <h5>Siga-nos nas redes sociais:</h5>
+                <p>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i> @acucareeafeto</a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i> Açúcar & Afeto</a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i> Canal Açúcar & Afeto</a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i> Açúcar & Afeto Receitas</a>
+                </p>
+            </div>
+        </section>
+        <hr>
+        <p class="copyright">&copy; 2025 Açúcar & Afeto. Todos os direitos reservados. Desenvolvido com muito açúcar e afeto. Versão 2.1.0</p>
+    </footer>
+</body>
+</html>
