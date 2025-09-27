@@ -1,24 +1,17 @@
-/*
- * =================================================================
- * Açúcar & Afeto - Folha de Estilo Principal V2.3 (Final)
- * =================================================================
- */
-/* --- Variáveis CSS --- */
 :root {
-    --primary-color: #f06292; /* Rosa forte */
-    --secondary-color: #ffe0b2; /* Laranja pastel */
-    --tertiary-color: #8c76ab; /* Roxo */
-    --accent-color: #ff92b4; /* Rosa suave */
-    --warning-color: #ffc107; /* Amarelo para estrelas */
+    --primary-color: #f06292;
+    --secondary-color: #ffe0b2;
+    --tertiary-color: #8c76ab;
+    --accent-color: #ff92b4;
+    --warning-color: #ffc107;
     --text-dark: #333;
     --text-light: #f4f4f4;
     --bg-light: #fff;
-    --bg-soft: #fcf6f9; /* Fundo suave */
+    --bg-soft: #fcf6f9;
     --font-heading: 'Dancing Script', cursive;
     --font-body: 'Inter', sans-serif;
-    --font-soft: 'Poppins', sans-serif; /* Nova fonte suave */
+    --font-soft: 'Poppins', sans-serif;
 }
-/* --- Estilos Globais e Reset Simples --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -33,7 +26,6 @@ body {
     background-color: var(--bg-soft);
     line-height: 1.6;
 }
-/* --- Tipografia e Cores --- */
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     color: var(--primary-color);
@@ -70,7 +62,6 @@ a {
 a:hover {
     color: var(--tertiary-color);
 }
-/* --- Layout Principal --- */
 header {
     background-color: var(--bg-light);
     padding: 1.5rem 1rem 0;
@@ -111,16 +102,12 @@ section {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
-/* --- Seção Hero e Descrições --- */
 .hero-section {
     text-align: center;
     padding: 4rem 2rem;
-    /* Amarelo pastel translúcido com degradê */
     background: linear-gradient(135deg, rgba(255, 221, 170, 0.7), rgba(255, 224, 178, 0.7));
     border-radius: 10px;
 }
-/* Removida a classe `.hero-text` e `.section-description` do CSS */
-/* --- Cards de Receitas --- */
 .recipes-section h3 {
     text-align: center;
     border-bottom: 2px solid var(--accent-color);
@@ -155,7 +142,7 @@ section {
 }
 .recipe-info h4 {
     font-family: var(--font-heading);
-    font-size: 1.4rem; /* Aumento da fonte do nome das receitas */
+    font-size: 1.4rem;
     margin-top: 0;
     margin-bottom: 0.5rem;
     font-weight: normal;
@@ -170,7 +157,6 @@ section {
 .popular-recipes {
     margin-bottom: 3rem;
 }
-/* --- Depoimentos --- */
 .testimonials {
     display: flex;
     flex-wrap: wrap;
@@ -198,7 +184,6 @@ blockquote cite {
     color: var(--primary-color);
     font-weight: 600;
 }
-/* --- Rodapé --- */
 footer {
     background-color: var(--text-dark);
     color: var(--text-light);
@@ -243,7 +228,6 @@ hr {
     font-size: 0.8rem;
     color: #aaa;
 }
-/* --- Responsividade (Media Queries) --- */
 @media (max-width: 768px) {
     h1 {
         font-size: 2.5rem;
@@ -259,12 +243,10 @@ hr {
         align-items: center;
         gap: 0.5rem;
     }
-    
     .recipe-grid, .testimonials {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
     .category-item i {
         font-size: 2.5rem;
     }
