@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Açúcar & Afeto</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="receitas.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle">
+
+    <header>
+        <label for="menu-toggle" class="hamburger-icon" aria-label="Abrir Menu">
+            <i class="fas fa-bars"></i>
+        </label>
+        <h1>Açúcar & Afeto</h1>
+    </header>
+    
+    <nav id="main-menu">
+        <label for="menu-toggle" class="close-icon" aria-label="Fechar Menu">
+            <i class="fas fa-times"></i>
+        </label>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> HOME</a></li>
+            <li><a href="receitas.html"><i class="fas fa-book"></i> RECEITAS</a></li>
+            <li><a href="categoria.html"><i class="fas fa-tags"></i> CATEGORIA</a></li>
+            <li><a href="login.html" class="active"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+        </ul>
+    </nav>
+    <label for="menu-toggle" class="menu-overlay"></label>
+    
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9 col-sm-12">
+                
+                <div class="card shadow-lg p-3 custom-card-login">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Bem-vindo(a) de volta!</h2>
+                        <p class="text-center text-muted">Acesse sua conta para salvar suas receitas favoritas.</p>
+                        
+                        <form>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="senha" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="senha" required>
+                            </div>
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="lembrar">
+                                <label class="form-check-label" for="lembrar">Lembrar-me</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-login w-100 mb-3">
+                                ENTRAR <i class="fas fa-sign-in-alt ms-2"></i>
+                            </button>
+                            
+                            <p class="text-center">
+                                <a href="#" class="text-secondary">Esqueceu sua senha?</a>
+                            </p>
+                        </form>
+                        
+                        <hr class="my-4">
+                        
+                        <div class="text-center mb-3">
+                            <h5 class="text-muted">Ainda não tem conta?</h5>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <a href="#" class="card card-cadastro p-3 text-center d-block">
+                                    <i class="fas fa-user-plus fa-2x mb-2"></i>
+                                    <h6>Criar minha conta</h6>
+                                </a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <a href="#" class="card card-google p-3 text-center d-block">
+                                    <i class="fab fa-google fa-2x mb-2"></i>
+                                    <h6>Entrar com Google</h6>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <section>
+            <h4><i class="fas fa-phone"></i> Contato & Suporte</h4>
+            <p><strong>E-mail:</strong> contato@acucareeafeto.com.br</p>
+            <p><strong>Parcerias:</strong> parcerias@acucareeafeto.com.br</p>
+            <div class="social-links">
+                <p>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                </p>
+            </div>
+        </section>
+        <hr>
+        <p class="copyright">&copy; 2025 Açúcar & Afeto.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
