@@ -12,55 +12,49 @@
     --font-body: 'Inter', sans-serif;
     --font-soft: 'Poppins', sans-serif;
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     font-family: var(--font-body);
     color: var(--text-dark);
     background-color: var(--bg-soft);
     line-height: 1.6;
 }
-
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     color: var(--primary-color);
     margin-bottom: 1rem;
     line-height: 1.2;
 }
-
 h1 {
     font-size: 3.5rem;
     text-align: center;
     color: var(--primary-color);
     text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
 }
-
 h2 {
     font-size: 2.5rem;
     text-align: center;
     color: var(--text-dark);
     margin-bottom: 0.5rem;
 }
-
+p {
+    margin-bottom: 1rem;
+}
 a {
     text-decoration: none;
     color: var(--primary-color);
     transition: color 0.3s ease;
 }
-
 a:hover {
     color: var(--tertiary-color);
 }
-
 header {
     background-color: var(--bg-light);
     padding: 1.5rem 1rem 0;
@@ -72,19 +66,15 @@ header {
     text-align: center;
     padding-bottom: 1rem;
 }
-
 header h1 {
     margin: 0 auto;
 }
-
 #menu-toggle {
     display: none;
 }
-
 .hamburger-icon, .close-icon, .menu-overlay {
     display: none;
 }
-
 nav {
     width: 100%;
     position: static;
@@ -94,7 +84,6 @@ nav {
     height: auto;
     margin-top: 1rem !important;
 }
-
 nav ul {
     list-style: none;
     display: flex;
@@ -103,7 +92,6 @@ nav ul {
     gap: 1.5rem;
     padding: 1rem 0;
 }
-
 nav a {
     font-size: 1rem;
     font-weight: 500;
@@ -112,47 +100,52 @@ nav a {
     color: var(--primary-color);
     transition: all 0.3s ease;
 }
-
 nav a:hover, nav a.active {
     background-color: var(--primary-color);
     color: var(--text-light);
 }
-
+main {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+.container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
 .card-title {
     font-family: var(--font-heading) !important;
     color: var(--primary-color) !important;
     font-size: 2.5rem;
 }
-
 .custom-card-login {
     border: 1px solid var(--accent-color);
     background-color: var(--bg-light);
     border-radius: 10px;
+    padding: 3rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
-
 .smaller-text {
     font-size: 1.1rem !important;
 }
-
 .forgot-password-link {
     font-size: 0.9rem;
 }
-
 .form-label {
     font-weight: 500;
     color: var(--text-dark);
 }
-
 .form-control {
     border-radius: 5px;
     border-color: #ddd;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
 }
-
 .form-control:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(240, 98, 146, 0.25);
 }
-
 .btn-login {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
@@ -161,18 +154,16 @@ nav a:hover, nav a.active {
     transition: background-color 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding: 0.75rem 1.5rem;
 }
-
 .btn-login:hover {
     background-color: var(--tertiary-color);
     border-color: var(--tertiary-color);
     color: var(--text-light);
 }
-
 .btn-login:focus, .btn-login:active {
     box-shadow: 0 0 0 0.25rem rgba(240, 98, 146, 0.5) !important;
 }
-
 .btn-google-custom {
     background-color: var(--bg-light);
     color: var(--text-dark) !important;
@@ -185,18 +176,15 @@ nav a:hover, nav a.active {
     transition: all 0.2s ease;
     height: 60px;
 }
-
 .btn-google-custom:hover {
     background-color: #f5f5f5;
     color: var(--text-dark);
     border-color: #aaa;
 }
-
 .google-logo {
     width: 20px;
     height: 20px;
 }
-
 .btn-cadastro-custom {
     background-color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
@@ -210,8 +198,8 @@ nav a:hover, nav a.active {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0.5rem 1.5rem;
 }
-
 .btn-cadastro-custom h6 {
     font-family: var(--font-body);
     font-weight: 600;
@@ -220,12 +208,10 @@ nav a:hover, nav a.active {
     line-height: 1;
     color: var(--text-dark);
 }
-
 .btn-cadastro-custom i {
     color: var(--primary-color);
     margin-bottom: 0.1rem !important;
 }
-
 .btn-cadastro-custom:hover {
     border-color: var(--primary-color);
     background-color: #fceee3;
@@ -233,91 +219,75 @@ nav a:hover, nav a.active {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     color: var(--text-dark);
 }
-
 footer {
-    background-color: #444;
+    background-color: #3d3d3d;
     color: var(--text-light);
-    padding: 2.5rem 0 1rem;
+    padding: 4rem 2rem 2.5rem;
 }
-
+footer section {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 footer h4 {
     font-family: var(--font-heading);
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--text-light);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
-
-footer h4 i {
-    font-size: 1.8rem;
-}
-
 footer p {
-    font-size: 0.95rem;
-    margin-bottom: 0.6rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: 400;
-    line-height: 1.8;
+    line-height: 1.6;
 }
-
-footer p strong {
-    font-weight: 600;
-    margin-right: 0.3rem;
+.footer-contact-info {
+    margin-bottom: 1.5rem;
 }
-
-.footer-left-content {
-    text-align: left;
+.social-section {
+    margin-top: 1.5rem;
 }
-
 .social-section h5 {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-    margin-top: 1.5rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
     color: var(--text-light);
 }
-
 .social-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: center;
 }
-
 .social-link {
     display: inline-flex;
     align-items: center;
     color: var(--text-light);
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: color 0.3s ease;
     white-space: nowrap;
-    text-decoration: none;
 }
-
 .social-link:hover {
     color: var(--primary-color);
 }
-
 .social-link i {
-    font-size: 1.2rem;
-    margin-right: 0.5rem;
+    font-size: 1.3rem;
+    margin-right: 0.6rem;
 }
-
 footer hr {
     border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin: 1.8rem 0 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 2.5rem 0 1.5rem;
 }
-
 .copyright {
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #aaa;
-    padding: 0.8rem 0;
+    padding: 0.5rem 0;
 }
-
 @media (max-width: 1024px) {
     header {
         padding: 1rem;
@@ -327,12 +297,10 @@ footer hr {
         flex-wrap: nowrap;
         padding-bottom: 1rem;
     }
-    
     header h1 {
         font-size: 2.5rem;
         margin: 0 auto;
     }
-    
     .hamburger-icon {
         display: block;
         margin-right: 1rem;
@@ -341,7 +309,6 @@ footer hr {
         color: var(--text-dark);
         z-index: 1001;
     }
-    
     nav {
         position: fixed;
         top: 0;
@@ -357,7 +324,6 @@ footer hr {
         display: block;
         margin-top: 0;
     }
-    
     .close-icon {
         display: block;
         cursor: pointer;
@@ -368,7 +334,6 @@ footer hr {
         left: 1rem;
         z-index: 2001;
     }
-    
     .menu-overlay {
         position: fixed;
         top: 0;
@@ -379,27 +344,22 @@ footer hr {
         z-index: 1999;
         display: none;
     }
-    
     #menu-toggle:checked ~ nav {
         transform: translateX(0);
     }
-    
     #menu-toggle:checked ~ .menu-overlay {
         display: block;
     }
-    
     nav ul {
         flex-direction: column;
         align-items: flex-start;
         gap: 0;
         padding: 0 1rem;
     }
-    
     nav ul li {
         width: 100%;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
     nav a {
         padding: 1rem 0;
         width: 100%;
@@ -410,31 +370,32 @@ footer hr {
         background: none;
         transition: background-color 0.3s ease;
     }
-    
     nav a:hover, nav a.active {
         background-color: rgba(255, 255, 255, 0.1);
         color: var(--primary-color);
     }
-    
     nav a i {
         margin-right: 1rem;
         width: 20px;
         color: var(--primary-color);
     }
-    
     .social-links {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
 }
-
 @media (max-width: 768px) {
     h1 {
         font-size: 3rem;
     }
-    
-    footer .col-md-6 {
-        margin-bottom: 2rem;
+    main {
+        padding: 0 1rem;
+    }
+    .custom-card-login {
+        padding: 2rem 1.5rem;
+    }
+    footer {
+        padding: 2.5rem 1rem 1.5rem;
     }
 }
