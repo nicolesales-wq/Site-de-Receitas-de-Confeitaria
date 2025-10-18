@@ -19,148 +19,216 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
     const phoneMask = (value) => {
         value = value.replace(/\D/g, "");
+        value = value.substring(0, 12);
+
+        let formattedValue = '';
+        
         if (value.length > 0) {
-            value = "(" + value.substring(0, 2);
+            formattedValue = "(" + value.substring(0, 2);
         }
-        if (value.length > 3) {
-            value += ") " + value.substring(2, 7);
+        if (value.length > 2) {
+            formattedValue += ") " + value.substring(2, 7);
         }
-        if (value.length > 10) {
-            value += "-" + value.substring(7, 11);
+        if (value.length > 7) {
+            formattedValue += "-" + value.substring(7, 12);
         }
-        if (value.length > 15) {
-            value = value.substring(0, 15);
-        }
-        return value;
+        
+        return formattedValue;
     };
 
-    const validateField = (input, message) => {
-        const value = input.value.trim();
-        const errorElement = document.getElementById(`error-${input.id}`);
+    const validateNome = () => {
+        const value = nomeInput.value.trim();
+        const errorElement = document.getElementById('error-nome');
         let isValid = true;
+        let errorMessage = '';
 
-        if (input.required && !value) {
+        if (!value) {
             isValid = false;
-            errorElement.textContent = `O campo ${message} é obrigatório.`;
+            errorMessage = 'O nome completo é obrigatório.';
+        } else if (value.length < 3) {
+            isValid = false;
+            errorMessage = 'O nome deve ter no mínimo 3 caracteres.';
+        } else if (value.length > 100) {
+            isValid = false;
+            errorMessage = 'O nome deve ter no máximo 100 caracteres.';
+        } else if (!/^[a-záàâãéèêíïóôõöúçñ\s]+$/i.test(value)) {
+            isValid = false;
+            errorMessage = 'O nome deve conter apenas letras.';
         } else {
-            errorElement.textContent = '';
-            if (input.id === 'email' && value && !emailRegex.test(value)) {
+            const palavras = value.split(' ').filter(p => p.length > 0);
+            if (palavras.length < 2) {
                 isValid = false;
-                errorElement.textContent = 'Por favor, insira um e-mail válido.';
-            } else if (input.id === 'confirmar-senha' && value && value !== senhaInput.value) {
-                isValid = false;
-                errorElement.textContent = 'As senhas não coincidem.';
-            } else if (input.id === 'pais' && input.required && !value) {
-                isValid = false;
-                errorElement.textContent = 'Por favor, selecione um país.';
+                errorMessage = 'Por favor, insira seu nome completo (nome e sobrenome).';
             }
         }
 
-        input.classList.toggle('is-invalid', !isValid);
-        input.classList.toggle('is-valid', isValid && value.length > 0);
+        errorElement.textContent = errorMessage;
+        nomeInput.classList.toggle('is-invalid', !isValid);
+        nomeInput.classList.toggle('is-valid', isValid);
         return isValid;
     };
 
-    const validateCheckbox = (checkbox, message) => {
-        const errorElement = document.getElementById(`error-${checkbox.id}`);
-        const isValid = checkbox.checked;
-        
-        if (!isValid) {
-            errorElement.textContent = `Você deve aceitar os ${message}.`;
-            checkbox.classList.add('is-invalid');
-        } else {
-            errorElement.textContent = '';
-            checkbox.classList.remove('is-invalid');
+    const validateEmail = () => {
+        const value = emailInput.value.trim();
+        const errorElement = document.getElementById('error-email');
+        let isValid = true;
+        let errorMessage = '';
+
+        if (!value) {
+            isValid = false;
+            errorMessage = 'O e-mail é obrigatório.';
+        } else if (!emailRegex.test(value)) {
+            isValid = false;
+            errorMessage = 'Por favor, insira um e-mail válido.';
+        } else if (value.length > 100) {
+            isValid = false;
+            errorMessage = 'O e-mail deve ter no máximo 100 caracteres.';
         }
+
+        errorElement.textContent = errorMessage;
+        emailInput.classList.toggle('is-invalid', !isValid);
+        emailInput.classList.toggle('is-valid', isValid);
         return isValid;
     };
 
     const updatePasswordValidation = () => {
         const senha = senhaInput.value;
+        const errorElement = document.getElementById('error-senha');
         
         passwordChecks.length = senha.length >= 8;
         passwordChecks.uppercase = /[A-Z]/.test(senha);
         passwordChecks.number = /[0-9]/.test(senha);
-        passwordChecks.special = /[$@$!%*?&]/.test(senha);
+        passwordChecks.special = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
 
         passwordRequirements.forEach(li => {
             const check = li.getAttribute('data-check');
             const isValid = passwordChecks[check];
             li.classList.toggle('valid', isValid);
+            const icon = li.querySelector('i');
+            if (isValid) {
+                icon.className = 'fas fa-check-circle';
+            } else {
+                icon.className = 'fas fa-times-circle';
+            }
         });
 
         const isPasswordValid = Object.values(passwordChecks).every(val => val);
         
-        const errorElement = document.getElementById('error-senha');
-        if (!isPasswordValid && senha.length > 0) {
+        if (senha.length === 0) {
+            errorElement.textContent = '';
+            senhaInput.classList.remove('is-invalid', 'is-valid');
+            return false;
+        } else if (!isPasswordValid) {
             errorElement.textContent = 'A senha não atende a todos os requisitos.';
             senhaInput.classList.remove('is-valid');
             senhaInput.classList.add('is-invalid');
-        } else if (senha.length > 0) {
+            return false;
+        } else {
             errorElement.textContent = '';
             senhaInput.classList.remove('is-invalid');
             senhaInput.classList.add('is-valid');
+            return true;
+        }
+    };
+
+    const validateConfirmarSenha = () => {
+        const value = confirmarSenhaInput.value;
+        const errorElement = document.getElementById('error-confirmar-senha');
+        let isValid = true;
+        let errorMessage = '';
+
+        if (!value) {
+            isValid = false;
+            errorMessage = 'Por favor, confirme sua senha.';
+        } else if (value !== senhaInput.value) {
+            isValid = false;
+            errorMessage = 'As senhas não coincidem.';
+        }
+
+        errorElement.textContent = errorMessage;
+        confirmarSenhaInput.classList.toggle('is-invalid', !isValid);
+        confirmarSenhaInput.classList.toggle('is-valid', isValid);
+        return isValid;
+    };
+
+    const validatePais = () => {
+        const value = paisSelect.value;
+        const errorElement = document.getElementById('error-pais');
+        const isValid = value !== '';
+
+        if (!isValid) {
+            errorElement.textContent = 'Por favor, selecione um país.';
         } else {
             errorElement.textContent = '';
-            senhaInput.classList.remove('is-invalid', 'is-valid');
         }
 
-        if (confirmarSenhaInput.value.length > 0) {
-            validateField(confirmarSenhaInput, 'Confirmação de Senha');
-        }
+        paisSelect.classList.toggle('is-invalid', !isValid);
+        paisSelect.classList.toggle('is-valid', isValid);
+        return isValid;
+    };
 
-        return isPasswordValid;
+    const validateTermos = () => {
+        const errorElement = document.getElementById('error-termos');
+        const isValid = termosCheckbox.checked;
+        
+        if (!isValid) {
+            errorElement.textContent = 'Você deve aceitar os Termos de Serviço.';
+            termosCheckbox.classList.add('is-invalid');
+        } else {
+            errorElement.textContent = '';
+            termosCheckbox.classList.remove('is-invalid');
+        }
+        return isValid;
     };
 
     const checkFormValidity = () => {
-        const allFieldsValid = inputs.every(input => validateField(input, input.placeholder || input.previousElementSibling.textContent.replace(' *', '')));
-        const isPasswordValid = updatePasswordValidation();
-        const isTermsChecked = validateCheckbox(termosCheckbox, 'Termos');
+        
+        const isNomeValid = nomeInput.value.trim().length > 0 ? validateNome() : false;
+        const isEmailValid = emailInput.value.trim().length > 0 ? validateEmail() : false;
+        const isPasswordValid = senhaInput.value.length > 0 ? updatePasswordValidation() : false;
+        const isConfirmarSenhaValid = confirmarSenhaInput.value.length > 0 ? validateConfirmarSenha() : false;
+        const isPaisValid = paisSelect.value !== '';
+        const isTermsChecked = termosCheckbox.checked;
 
-        submitBtn.disabled = !(allFieldsValid && isPasswordValid && isTermsChecked);
+        const allValid = isNomeValid && isEmailValid && isPasswordValid && isConfirmarSenhaValid && isPaisValid && isTermsChecked;
+        submitBtn.disabled = !allValid;
     };
 
-    inputs.forEach(input => {
-        input.addEventListener('input', checkFormValidity);
-        input.addEventListener('blur', () => validateField(input, input.placeholder || input.previousElementSibling.textContent.replace(' *', '')));
+    nomeInput.addEventListener('input', checkFormValidity);
+    nomeInput.addEventListener('blur', validateNome);
+
+    emailInput.addEventListener('input', checkFormValidity);
+    emailInput.addEventListener('blur', validateEmail);
+
+    senhaInput.addEventListener('input', () => {
+        updatePasswordValidation();
+        if (confirmarSenhaInput.value.length > 0) {
+            validateConfirmarSenha();
+        }
+        checkFormValidity();
+    });
+
+    confirmarSenhaInput.addEventListener('input', () => {
+        validateConfirmarSenha();
+        checkFormValidity();
+    });
+    confirmarSenhaInput.addEventListener('blur', validateConfirmarSenha);
+
+    paisSelect.addEventListener('change', () => {
+        validatePais();
+        checkFormValidity();
+    });
+
+    termosCheckbox.addEventListener('change', () => {
+        validateTermos();
+        checkFormValidity();
     });
 
     whatsappInput.addEventListener('input', (e) => {
         e.target.value = phoneMask(e.target.value);
-    });
-
-    senhaInput.addEventListener('input', updatePasswordValidation);
-    confirmarSenhaInput.addEventListener('input', () => validateField(confirmarSenhaInput, 'Confirmação de Senha'));
-
-    termosCheckbox.addEventListener('change', checkFormValidity);
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const allValid = inputs.every(input => validateField(input, input.placeholder || input.previousElementSibling.textContent.replace(' *', ''))) &&
-                         updatePasswordValidation() &&
-                         validateCheckbox(termosCheckbox, 'Termos');
-
-        if (allValid) {
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> CADASTRANDO...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                showAlert('Cadastro realizado com sucesso! Bem-vindo(a) ao Açúcar & Afeto! 🎉', 'success');
-                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> CONTA CRIADA';
-                submitBtn.classList.remove('btn-cadastro');
-                submitBtn.classList.add('btn-success');
-                
-                setTimeout(() => {
-                    window.location.href = 'login.html'; 
-                }, 2000);
-                
-            }, 3000); 
-        } else {
-            showAlert('Por favor, corrija os erros do formulário.', 'error');
-        }
     });
 
     document.querySelectorAll('.toggle-password').forEach(button => {
@@ -183,6 +251,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const isNomeValid = validateNome();
+        const isEmailValid = validateEmail();
+        const isPasswordValid = updatePasswordValidation();
+        const isConfirmarSenhaValid = validateConfirmarSenha();
+        const isPaisValid = validatePais();
+        const isTermsValid = validateTermos();
+
+        const allValid = isNomeValid && isEmailValid && isPasswordValid && isConfirmarSenhaValid && isPaisValid && isTermsValid;
+
+        if (!allValid) {
+            showAlert('❌ Por favor, corrija os erros no formulário antes de continuar!', 'error');
+            
+            const firstInvalid = form.querySelector('.is-invalid');
+            if (firstInvalid) {
+                firstInvalid.focus();
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            return;
+        }
+
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> CADASTRANDO...';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            showAlert('✅ Cadastro realizado com sucesso! Redirecionando para a página inicial...', 'success');
+            
+            submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> CONTA CRIADA';
+            submitBtn.classList.remove('btn-cadastro');
+            submitBtn.classList.add('btn-success');
+            
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+            
+        }, 2000);
+    });
+
     const showAlert = (message, type) => {
         const alertDiv = document.createElement('div');
         alertDiv.style.cssText = `
@@ -196,8 +304,10 @@ document.addEventListener('DOMContentLoaded', () => {
             z-index: 10000;
             font-weight: 500;
             min-width: 300px;
+            max-width: 500px;
             text-align: center;
             animation: slideDown 0.4s ease;
+            font-family: 'Inter', sans-serif;
         `;
         
         if (type === 'success') {
@@ -219,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             alertDiv.style.animation = 'slideUp 0.4s ease';
             setTimeout(() => alertDiv.remove(), 400);
-        }, 3000);
+        }, 4000);
     };
 
     const style = document.createElement('style');
@@ -231,6 +341,16 @@ document.addEventListener('DOMContentLoaded', () => {
         @keyframes slideUp {
             from { transform: translate(-50%, 0); opacity: 1; }
             to { transform: translate(-50%, -100px); opacity: 0; }
+        }
+        .password-requirements li {
+            color: #dc3545;
+            transition: color 0.3s ease;
+        }
+        .password-requirements li.valid {
+            color: #28a745;
+        }
+        .toggle-password.active {
+            color: #f06292;
         }
     `;
     document.head.appendChild(style);
