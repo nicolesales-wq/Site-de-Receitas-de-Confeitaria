@@ -1,0 +1,196 @@
+:root {
+    --primary-color: #f06292;
+    --secondary-color: #ffe0b2;
+    --tertiary-color: #8c76ab;
+    --accent-color: #ff92b4;
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --text-dark: #333;
+    --text-light: #f4f4f4;
+    --bg-light: #fff;
+    --bg-soft: #fcf6f9;
+    --font-heading: 'Dancing Script', cursive;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--bg-soft);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.main-content {
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.recipe-submit-card {
+    background-color: var(--bg-light);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-color);
+}
+
+.recipe-submit-card h2 {
+    font-size: 3rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.recipe-submit-card p.subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.form-control, .form-select {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: var(--font-body);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(240, 98, 146, 0.25);
+    outline: none;
+}
+
+.form-control[type="file"] {
+    padding-top: 0.5rem; 
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+    border-color: var(--error-color);
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,...");
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    font-style: italic;
+}
+
+.recipe-section-title {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--tertiary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px dashed rgba(140, 118, 171, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.btn-add, .btn-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.btn-add {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    margin-top: 0.5rem;
+}
+
+.btn-add:hover {
+    background-color: #d15080;
+}
+
+.btn-remove {
+    background-color: var(--error-color);
+    color: var(--text-light);
+    margin-left: 0.5rem;
+}
+
+.btn-remove:hover {
+    background-color: #c43040;
+}
+
+.list-item-group {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.list-item-group .form-control {
+    flex-grow: 1;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 10px rgba(240, 98, 146, 0.4);
+}
+
+.btn-submit:hover:not(:disabled) {
+    background-color: #d15080;
+    transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin: 1rem auto;
+    }
+    .recipe-submit-card {
+        padding: 1.5rem;
+    }
+    .recipe-submit-card h2 {
+        font-size: 2.5rem;
+    }
+    .list-item-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn-remove {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
