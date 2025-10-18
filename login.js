@@ -7,46 +7,116 @@ window.addEventListener('load', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('email');
     const senhaInput = document.getElementById('senha');
-    
+    const loginForm = document.querySelector('form');
+    const loginBtn = document.querySelector('.btn-login');
+    const googleBtn = document.querySelector('.btn-google-custom');
+    const cadastroBtn = document.querySelector('.btn-cadastro-custom');
+    const forgotPasswordLink = document.querySelector('.forgot-password-link');
+    const rememberCheckbox = document.getElementById('lembrar');
+    const checkboxLabel = document.querySelector('label[for="lembrar"]');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function showAlert(message, type) {
+        const alertDiv = document.createElement('div');
+        alertDiv.style.cssText = `
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 10000;
+            font-weight: 500;
+            min-width: 300px;
+            text-align: center;
+            animation: slideDown 0.4s ease;
+        `;
+        
+        if (type === 'success') {
+            alertDiv.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+            alertDiv.style.color = 'white';
+            alertDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+        } else if (type === 'error') {
+            alertDiv.style.background = 'linear-gradient(135deg, #dc3545, #e74c3c)';
+            alertDiv.style.color = 'white';
+            alertDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+        } else if (type === 'warning') {
+            alertDiv.style.background = 'linear-gradient(135deg, #ffc107, #ff9800)';
+            alertDiv.style.color = '#333';
+            alertDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
+        }
+        
+        document.body.appendChild(alertDiv);
+        
+        setTimeout(() => {
+            alertDiv.style.animation = 'slideUp 0.4s ease';
+            setTimeout(() => alertDiv.remove(), 400);
+        }, 3000);
+    }
+
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #333;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10000;
+            animation: slideLeft 0.3s ease;
+            font-size: 0.95rem;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.style.animation = 'slideRight 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 2500);
+    }
+
     emailInput.addEventListener('keyup', (e) => {
         const email = e.target.value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const icon = emailInput.parentElement.querySelector('.validation-icon');
         
+        if (icon) icon.remove();
+
         if (email.length > 0) {
             if (emailRegex.test(email)) {
                 emailInput.style.borderColor = '#28a745';
                 emailInput.style.backgroundColor = 'rgba(40, 167, 69, 0.05)';
                 
-                if (!emailInput.parentElement.querySelector('.validation-icon')) {
-                    const icon = document.createElement('i');
-                    icon.className = 'fas fa-check-circle validation-icon';
-                    icon.style.cssText = `
-                        position: absolute;
-                        right: 15px;
-                        top: 38px;
-                        color: #28a745;
-                        font-size: 1.2rem;
-                    `;
-                    emailInput.parentElement.style.position = 'relative';
-                    emailInput.parentElement.appendChild(icon);
-                }
+                const newIcon = document.createElement('i');
+                newIcon.className = 'fas fa-check-circle validation-icon';
+                newIcon.style.cssText = `
+                    position: absolute;
+                    right: 15px;
+                    top: 38px;
+                    color: #28a745;
+                    font-size: 1.2rem;
+                `;
+                emailInput.parentElement.style.position = 'relative';
+                emailInput.parentElement.appendChild(newIcon);
             } else {
                 emailInput.style.borderColor = '#dc3545';
                 emailInput.style.backgroundColor = 'rgba(220, 53, 69, 0.05)';
-                
-                const icon = emailInput.parentElement.querySelector('.validation-icon');
-                if (icon) icon.remove();
             }
         } else {
             emailInput.style.borderColor = '#ddd';
             emailInput.style.backgroundColor = 'white';
-            const icon = emailInput.parentElement.querySelector('.validation-icon');
-            if (icon) icon.remove();
         }
     });
     
     senhaInput.addEventListener('keyup', (e) => {
         const senha = e.target.value;
+        const existingIndicator = senhaInput.parentElement.querySelector('.password-strength');
+        
+        if (existingIndicator) existingIndicator.remove();
+        senhaInput.style.borderColor = '#ddd';
         
         if (senha.length > 0) {
             let strength = 0;
@@ -55,9 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (senha.match(/[A-Z]+/)) strength++;
             if (senha.match(/[0-9]+/)) strength++;
             if (senha.match(/[$@#&!]+/)) strength++;
-            
-            const existingIndicator = senhaInput.parentElement.querySelector('.password-strength');
-            if (existingIndicator) existingIndicator.remove();
             
             const indicator = document.createElement('div');
             indicator.className = 'password-strength';
@@ -83,18 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             senhaInput.parentElement.appendChild(indicator);
-        } else {
-            senhaInput.style.borderColor = '#ddd';
-            const indicator = senhaInput.parentElement.querySelector('.password-strength');
-            if (indicator) indicator.remove();
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const senhaInput = document.getElementById('senha');
-    const senhaLabel = senhaInput.previousElementSibling;
-    
     const toggleBtn = document.createElement('button');
     toggleBtn.type = 'button';
     toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
@@ -138,15 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleBtn.style.color = '#666';
         }
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
-    const emailInput = document.getElementById('email');
-    const senhaInput = document.getElementById('senha');
-    const loginBtn = document.querySelector('.btn-login');
-    
-    form.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
         const email = emailInput.value.trim();
@@ -157,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             showAlert('Por favor, insira um e-mail válido!', 'error');
             emailInput.focus();
@@ -175,62 +225,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             showAlert('Login realizado com sucesso! Bem-vindo(a) de volta! 🎉', 'success');
-            loginBtn.innerHTML = 'ENTRAR <i class="fas fa-sign-in-alt ms-2"></i>';
-            loginBtn.disabled = false;
             
-            form.reset();
-            emailInput.style.borderColor = '#ddd';
-            emailInput.style.backgroundColor = 'white';
-            senhaInput.style.borderColor = '#ddd';
-            
-            const icons = document.querySelectorAll('.validation-icon, .password-strength');
-            icons.forEach(icon => icon.remove());
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
         }, 2000);
     });
-});
-
-function showAlert(message, type) {
-    const alertDiv = document.createElement('div');
-    alertDiv.style.cssText = `
-        position: fixed;
-        top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        z-index: 10000;
-        font-weight: 500;
-        min-width: 300px;
-        text-align: center;
-        animation: slideDown 0.4s ease;
-    `;
-    
-    if (type === 'success') {
-        alertDiv.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-        alertDiv.style.color = 'white';
-        alertDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-    } else if (type === 'error') {
-        alertDiv.style.background = 'linear-gradient(135deg, #dc3545, #e74c3c)';
-        alertDiv.style.color = 'white';
-        alertDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
-    } else if (type === 'warning') {
-        alertDiv.style.background = 'linear-gradient(135deg, #ffc107, #ff9800)';
-        alertDiv.style.color = '#333';
-        alertDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${message}`;
-    }
-    
-    document.body.appendChild(alertDiv);
-    
-    setTimeout(() => {
-        alertDiv.style.animation = 'slideUp 0.4s ease';
-        setTimeout(() => alertDiv.remove(), 400);
-    }, 3000);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const googleBtn = document.querySelector('.btn-google-custom');
-    const cadastroBtn = document.querySelector('.btn-cadastro-custom');
     
     googleBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -240,15 +240,10 @@ document.addEventListener('DOMContentLoaded', () => {
             showAlert('Conectando com o Google...', 'success');
             googleBtn.innerHTML = `
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/100px-Google_%22G%22_logo.svg.png" 
-                     alt="Google Logo" class="google-logo" style="width: 20px; height: 20px;">
+                    alt="Google Logo" class="google-logo" style="width: 20px; height: 20px;">
                 Entrar com Google
             `;
         }, 1500);
-    });
-    
-    cadastroBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        showAlert('Redirecionando para página de cadastro...', 'success');
     });
     
     [googleBtn, cadastroBtn].forEach(btn => {
@@ -260,11 +255,18 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.transform = 'translateY(0)';
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const forgotPasswordLink = document.querySelector('.forgot-password-link');
-    
+    rememberCheckbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            checkboxLabel.style.color = '#f06292';
+            checkboxLabel.style.fontWeight = '600';
+            showToast('✓ Você será lembrado neste dispositivo');
+        } else {
+            checkboxLabel.style.color = '#333';
+            checkboxLabel.style.fontWeight = '400';
+        }
+    });
+
     forgotPasswordLink.addEventListener('click', (e) => {
         e.preventDefault();
         
@@ -359,9 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         closeBtn.addEventListener('mouseout', () => {
-            if (!passwordVisible) {
-                closeBtn.style.color = '#666';
-            }
+            closeBtn.style.color = '#666';
         });
         
         modal.addEventListener('click', (e) => {
@@ -381,79 +381,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => modal.remove(), 300);
         });
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    const rememberCheckbox = document.getElementById('lembrar');
-    const checkboxLabel = document.querySelector('label[for="lembrar"]');
-    
-    rememberCheckbox.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            checkboxLabel.style.color = '#f06292';
-            checkboxLabel.style.fontWeight = '600';
-            showToast('✓ Você será lembrado neste dispositivo');
-        } else {
-            checkboxLabel.style.color = '#333';
-            checkboxLabel.style.fontWeight = '400';
-        }
-    });
-});
-
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        background: #333;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 50px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        z-index: 10000;
-        animation: slideLeft 0.3s ease;
-        font-size: 0.95rem;
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes slideDown { from { transform: translate(-50%, -100px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+        @keyframes slideUp { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -100px); opacity: 0; } }
+        @keyframes slideLeft { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100px); opacity: 0; } }
     `;
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-        toast.style.animation = 'slideRight 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-    }, 2500);
-}
+    document.head.appendChild(style);
 
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
-    }
-    @keyframes scaleIn {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-    @keyframes slideDown {
-        from { transform: translate(-50%, -100px); opacity: 0; }
-        to { transform: translate(-50%, 0); opacity: 1; }
-    }
-    @keyframes slideUp {
-        from { transform: translate(-50%, 0); opacity: 1; }
-        to { transform: translate(-50%, -100px); opacity: 0; }
-    }
-    @keyframes slideLeft {
-        from { transform: translateX(100px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideRight {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100px); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
-
-console.log('🔐 Página de Login - Script carregado com sucesso!');
+    console.log('🔐 Página de Login - Script carregado com sucesso!');
+});
