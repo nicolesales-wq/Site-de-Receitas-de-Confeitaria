@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Receitas - Açúcar & Afeto</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="minhasreceitas.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle">
+
+    <header>
+        <label for="menu-toggle" class="hamburger-icon" aria-label="Abrir Menu">
+            <i class="fas fa-bars"></i>
+        </label>
+        <h1>Açúcar & Afeto</h1>
+    </header>
+    
+    <nav id="main-menu">
+        <label for="menu-toggle" class="close-icon" aria-label="Fechar Menu">
+            <i class="fas fa-times"></i>
+        </label>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> HOME</a></li>
+            <li><a href="receitas.html"><i class="fas fa-book"></i> RECEITAS</a></li>
+            <li><a href="sobre-nos.html"><i class="fas fa-info-circle"></i> SOBRE NÓS</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> LOGIN</a></li>
+        </ul>
+    </nav>
+    <label for="menu-toggle" class="menu-overlay"></label>
+    
+    <main class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-11 col-sm-12">
+                
+                <div class="recipe-submit-card">
+                    <h2 class="card-title">Compartilhe Sua Receita</h2>
+                    <p class="subtitle">Ajude nossa comunidade a crescer compartilhando suas deliciosas criações!</p>
+                    
+                    <form id="receita-form" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <h5 class="recipe-section-title"><i class="fas fa-user"></i> Informações Pessoais</h5>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="nome" class="form-label">Seu Nome <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="nome" placeholder="Nome completo" required>
+                                <div class="error-message" id="error-nome"></div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">E-mail <span class="required">*</span></label>
+                                <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                                <div class="error-message" id="error-email"></div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="telefone" class="form-label">Telefone <span class="required">*</span></label>
+                                <input type="tel" class="form-control" id="telefone" placeholder="(00) 00000-0000" required>
+                                <div class="error-message" id="error-telefone"></div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" placeholder="Sua cidade">
+                                <div class="error-message" id="error-cidade"></div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <h5 class="recipe-section-title mt-3"><i class="fas fa-birthday-cake"></i> Informações da Receita</h5>
+                            </div>
+                            
+                            <div class="col-md-8">
+                                <label for="titulo-receita" class="form-label">Título da Receita <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="titulo-receita" placeholder="Ex: Bolo de Chocolate Cremoso" required>
+                                <div class="error-message" id="error-titulo-receita"></div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="categoria" class="form-label">Categoria <span class="required">*</span></label>
+                                <select class="form-select form-control" id="categoria" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="bolos">Bolos</option>
+                                    <option value="tortas">Tortas</option>
+                                    <option value="doces">Doces</option>
+                                    <option value="brigadeiros">Brigadeiros</option>
+                                    <option value="cookies">Cookies</option>
+                                    <option value="cupcakes">Cupcakes</option>
+                                    <option value="mousses">Mousses</option>
+                                    <option value="sobremesas">Sobremesas</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                                <div class="error-message" id="error-categoria"></div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="porcoes" class="form-label">Porções/Rendimento <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="porcoes" placeholder="Ex: 12 porções" required>
+                                <div class="error-message" id="error-porcoes"></div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="tempo-preparo" class="form-label">Tempo de Preparo <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="tempo-preparo" placeholder="Ex: 45 minutos" required>
+                                <div class="error-message" id="error-tempo-preparo"></div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label for="dificuldade" class="form-label">Nível de Dificuldade <span class="required">*</span></label>
+                                <select class="form-select form-control" id="dificuldade" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="facil">Fácil</option>
+                                    <option value="medio">Médio</option>
+                                    <option value="dificil">Difícil</option>
+                                </select>
+                                <div class="error-message" id="error-dificuldade"></div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="descricao" class="form-label">Descrição da Receita <span class="required">*</span></label>
+                                <textarea class="form-control" id="descricao" rows="3" placeholder="Conte um pouco sobre sua receita..." required></textarea>
+                                <small class="form-text text-muted">Mínimo 20 caracteres</small>
+                                <div class="error-message" id="error-descricao"></div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="ingredientes" class="form-label">Ingredientes <span class="required">*</span></label>
+                                <textarea class="form-control" id="ingredientes" rows="8" placeholder="Liste os ingredientes (um por linha)&#10;Ex:&#10;2 xícaras de farinha de trigo&#10;1 xícara de açúcar&#10;3 ovos&#10;..." required></textarea>
+                                <small class="form-text text-muted">Mínimo 50 caracteres</small>
+                                <div class="error-message" id="error-ingredientes"></div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="modo-preparo" class="form-label">Modo de Preparo <span class="required">*</span></label>
+                                <textarea class="form-control" id="modo-preparo" rows="10" placeholder="Descreva o passo a passo do preparo...&#10;Ex:&#10;1. Pré-aqueça o forno a 180°C&#10;2. Em uma tigela, misture...&#10;..." required></textarea>
+                                <small class="form-text text-muted">Mínimo 100 caracteres</small>
+                                <div class="error-message" id="error-modo-preparo"></div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="dicas" class="form-label">Dicas e Observações</label>
+                                <textarea class="form-control" id="dicas" rows="4" placeholder="Compartilhe dicas especiais, sugestões de variações ou observações importantes..."></textarea>
+                                <div class="error-message" id="error-dicas"></div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="link-foto" class="form-label">Link da Foto (Opcional)</label>
+                                <input type="url" class="form-control" id="link-foto" placeholder="https://exemplo.com/foto.jpg">
+                                <small class="form-text text-muted">Cole o link de uma imagem da sua receita</small>
+                                <div class="error-message" id="error-link-foto"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="termos" required>
+                            <label class="form-check-label" for="termos">
+                                Declaro que esta receita é de minha autoria ou tenho permissão para compartilhá-la, e concordo com os <a href="#" target="_blank">Termos de Uso</a> <span class="required">*</span>
+                            </label>
+                            <div class="error-message" id="error-termos"></div>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-submit btn-lg" id="submit-btn" disabled>
+                                <i class="fas fa-paper-plane me-2"></i> ENVIAR RECEITA
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-start">
+                    <section>
+                        <h4><i class="fas fa-phone"></i> Contato & Suporte</h4>
+                        <div class="footer-contact-info">
+                            <p>E-mail: contato@acucareeafeto.com.br</p>
+                            <p>Suporte técnico: suporte@acucareeafeto.com.br</p>
+                            <p>Envio de receitas: receitas@acucareeafeto.com.br</p>
+                            <p>Parcerias: parcerias@acucareeafeto.com.br</p>
+                        </div>
+                        
+                        <div class="social-section">
+                            <h5>Siga-nos nas redes sociais:</h5>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i> @acucareeafeto</a>
+                                <a href="#" class="social-link"><i class="fab fa-facebook"></i> Açúcar & Afeto</a>
+                                <a href="#" class="social-link"><i class="fab fa-youtube"></i> Canal Açúcar & Afeto</a>
+                                <a href="#" class="social-link"><i class="fab fa-pinterest"></i> Açúcar & Afeto Receitas</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">&copy; 2025 Açúcar & Afeto. Todos os direitos reservados. Desenvolvido com muito açúcar e afeto. Versão 2.1.0</p>
+    </footer>
+
+    <script src="minhasreceitas.js"></script>
+</body>
+</html>
